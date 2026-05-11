@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+
+actor "Praticante" as user
+package "App Yoga & Chakras" {
+  usecase "Cadastrar/Login" as UC1
+  usecase "Selecionar Chakra (Frequência)" as UC2
+  usecase "Praticar Flow (Yoga/Tai Chi)" as UC3
+  usecase "Personalizar Treino" as UC4
+  usecase "Conectar Apps Antigos (Integração)" as UC5
+}
+
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+user --> UC5
+@enduml
