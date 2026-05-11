@@ -1,0 +1,45 @@
+@startuml
+title Fluxograma de Processo - App Mindfulness MVP
+
+start
+:Tela Login;
+
+if (Usuário Cadastrado?) then (não)
+  :Criar Perfil de Bem-estar;
+else (sim)
+  :Logon;
+endif
+
+partition "Escolha da Jornada" {
+  :Selecionar tipo de prática;
+  
+  if (Caminho escolhido?) then (Caminho Chakra)
+    :Selecionar Chakra (Raiz, Sacral, etc.);
+    :Filtrar Yoga Flow correspondente;
+    :Carregar Frequência Hz sugerida;
+  else (Caminho Livre)
+    :Selecionar Modalidade (Tai Chi, Alongamento, etc.);
+    :Explorar Catálogo Geral;
+  endif
+}
+
+partition "Configuração de Som" {
+  :Abrir Tela de audios;
+  if (Personalizar Áudio?) then (sim)
+    :Escolher Trilha/Frequência;
+  else (não)
+    :Manter Áudio Padrão da Aula;
+  endif
+}
+
+partition "Prática" {
+  :Iniciar Player (Vídeo + Áudio);
+  :Praticar Exercício;
+  :Finalizar Aula;
+}
+
+:Registrar Conclusão no Calendário;
+:Exibir Mensagem de Progresso/Energia;
+
+stop
+@enduml
