@@ -3,17 +3,41 @@ left to right direction
 skinparam actorStyle awesome
 
 actor "Praticante" as user
-package "App Yoga & Chakras" {
-  usecase "Cadastrar/Login" as UC1
-  usecase "Selecionar Chakra (Frequência)" as UC2
-  usecase "Praticar Flow (Yoga/Tai Chi)" as UC3
-  usecase "Personalizar Treino" as UC4
-  usecase "Conectar Apps Antigos (Integração)" as UC5
+
+package "App Mindfulness" {
+  usecase "Fazer login/cadastro" as UC_Login
+  usecase "Gerenciar Perfil/Progresso" as UC_Perfil
+  usecase "Visualizar Calendário de Práticas" as UC_Cal
+  usecase "Escolher Caminho: Chakra" as UC_Chakra
+  usecase "Escolher Caminho: Livre/Personalizado" as UC_Livre
+  
+
+  usecase "Selecionar Modalidade (Yoga, Tai Chi, Alongamento)" as UC_Mod
+  usecase "Selecionar Chakra" as UC_ChakraFlow
+  usecase "Praticar Flow (Vídeo/Instrução)" as UC_Flow
+  usecase "Personalizar Áudio (Frequências/Músicas)" as UC_Som
 }
 
-user --> UC1
-user --> UC2
-user --> UC3
-user --> UC4
-user --> UC5
+user --> UC_Login
+user --> UC_Perfil
+user --> UC_Cal
+user --> UC_Chakra
+user --> UC_Livre
+
+
+
+note right of UC_Som
+  O usuário pode escolher o som 
+  antes ou durante a prática.
+end note
+
+UC_Livre ..> UC_Mod : <<include>>
+UC_Mod ..> UC_Flow : <<include>>
+UC_Chakra ..> UC_ChakraFlow : <<include>>
+UC_Som ..> UC_ChakraFlow : <<extend>>
+UC_ChakraFlow ..> UC_Flow : <<include>>
+UC_Som ..> UC_Mod : <<extend>>
+
+
+
 @enduml
